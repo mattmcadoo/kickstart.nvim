@@ -693,5 +693,8 @@ harpoon:setup()
 
 vim.keymap.set("n", "<leader>H", function() harpoon:list():append() end)
 
+-- Use VIM plugins installed in Gentoo
+vim.opt.rtp:append('/usr/share/vim/vimfiles')
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
