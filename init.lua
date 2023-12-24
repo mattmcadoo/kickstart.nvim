@@ -92,7 +92,15 @@ require('lazy').setup({
 
       -- Additional lua configuration, makes nvim stuff amazing!
       'folke/neodev.nvim',
+
     },
+  },
+  {
+    -- DAP plugins
+    'mfussenegger/nvim-dap',
+    'jbyuki/one-small-step-for-vimkind',
+    'mfussenegger/nvim-dap-python',
+    'theHamsta/nvim-dap-virtual-text',
   },
 
   {
@@ -605,6 +613,14 @@ local servers = {
       -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
+}
+
+-- GDB debugging for C/C++/Rust
+local dap = require("dap")
+dap.adapters.gdb = {
+  type = "executable",
+  command = "gdb",
+  args = { "-i", "dap" }
 }
 
 -- Setup neovim lua configuration
