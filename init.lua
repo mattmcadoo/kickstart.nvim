@@ -321,6 +321,8 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
+vim.g.python3_host_prog = '/usr/bin/python3'
+
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
@@ -708,7 +710,7 @@ cmp.setup {
 local harpoon = require("harpoon")
 
 -- REQUIRED
-harpoon:setup()
+harpoon:setup({})
 -- REQUIRED
 
 vim.keymap.set("n", "<leader>H", function() harpoon:list():append() end)
