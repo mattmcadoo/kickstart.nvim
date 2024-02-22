@@ -304,6 +304,22 @@ require('lazy').setup({
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
+vim.treesitter.language.add('bash', { path = "/usr/lib64/libtree-sitter-bash.so" })
+vim.treesitter.language.add('c_sharp', { path = "/usr/lib64/libtree-sitter-c-sharp.so" })
+vim.treesitter.language.add('c', { path = "/usr/lib64/libtree-sitter-c.so" })
+vim.treesitter.language.add('cmake', { path = "/usr/lib64/libtree-sitter-cmake.so" })
+vim.treesitter.language.add('cpp', { path = "/usr/lib64/libtree-sitter-cpp.so" })
+vim.treesitter.language.add('css', { path = "/usr/lib64/libtree-sitter-css.so" })
+vim.treesitter.language.add('go', { path = "/usr/lib64/libtree-sitter-go.so" })
+vim.treesitter.language.add('hcl', { path = "/usr/lib64/libtree-sitter-hcl.so" })
+vim.treesitter.language.add('html', { path = "/usr/lib64/libtree-sitter-html.so" })
+vim.treesitter.language.add('java', { path = "/usr/lib64/libtree-sitter-java.so" })
+vim.treesitter.language.add('javascript', { path = "/usr/lib64/libtree-sitter-javascript.so" })
+vim.treesitter.language.add('json', { path = "/usr/lib64/libtree-sitter-json.so" })
+vim.treesitter.language.add('php', { path = "/usr/lib64/libtree-sitter-php.so" })
+vim.treesitter.language.add('python', { path = "/usr/lib64/libtree-sitter-python.so" })
+vim.treesitter.language.add('regex', { path = "/usr/lib64/libtree-sitter-regex.so" })
+vim.treesitter.language.add('ruby', { path = "/usr/lib64/libtree-sitter-ruby.so" })
 
 -- Set highlight on search
 vim.o.hlsearch = true
@@ -590,6 +606,19 @@ require('which-key').register({
   ['<leader>h'] = { 'Git [H]unk' },
 }, { mode = 'v' })
 
+require 'lspconfig'.pylsp.setup {
+  settings = {
+    pylsp = {
+      plugins = {
+        ruff = {
+          enabled = true,
+          executable = "/usr/bin/ruff",
+        }
+      }
+    }
+  }
+}
+
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
@@ -604,10 +633,21 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-  -- clangd = {},
+  clangd = {},
   -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
+  -- pylsp = {
+  --   cmd = "pylsp",
+  --   filetypes = "python",
+  --   plugins = {
+  --     -- formatter
+  --     black = { enabled = false },
+  --     ruff = {
+  --       enabled = true,
+  --       executable = "/usr/bin/ruff",
+  --     },
+  --   },
+  -- },
+  rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
 
