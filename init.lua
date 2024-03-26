@@ -623,6 +623,14 @@ require 'lspconfig'.pylsp.setup {
 
 require 'lspconfig'.marksman.setup {}
 
+require 'lspconfig'.terraformls.setup {}
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.tf", "*.tfvars" },
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
