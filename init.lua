@@ -621,6 +621,8 @@ require 'lspconfig'.pylsp.setup {
   }
 }
 
+require 'lspconfig'.marksman.setup {}
+
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
