@@ -334,6 +334,7 @@ vim.wo.relativenumber = true
 vim.o.mouse = 'a'
 
 vim.o.tabstop = 4
+vim.o.softtabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
 
@@ -606,18 +607,19 @@ require('which-key').register({
   ['<leader>h'] = { 'Git [H]unk' },
 }, { mode = 'v' })
 
-require 'lspconfig'.pylsp.setup {
-  settings = {
-    pylsp = {
-      plugins = {
-        ruff = {
-          enabled = true,
-          executable = "/usr/bin/ruff",
-        }
-      }
-    }
-  }
-}
+-- require 'lspconfig'.pylsp.setup {
+--   settings = {
+--     pylsp = {
+--       plugins = {
+--         ruff = {
+--           enabled = true,
+--           executable = "/usr/bin/ruff",
+--           extendSelect = { "I" },
+--         }
+--       }
+--     }
+--   }
+-- }
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -634,19 +636,29 @@ require('mason-lspconfig').setup()
 --  define the property 'filetypes' to the map in question.
 local servers = {
   clangd = {},
+  bashls = {
+    cmd = { "bash-language-server", "start" },
+    filetypes = { "sh", "bash" },
+    settings = {
+      bashIde = {
+        globPattern = "*@(.sh|.inc|.bash|.command)"
+      },
+    },
+  },
   -- gopls = {},
-  -- pylsp = {
-  --   cmd = "pylsp",
-  --   filetypes = "python",
-  --   plugins = {
-  --     -- formatter
-  --     black = { enabled = false },
-  --     ruff = {
-  --       enabled = true,
-  --       executable = "/usr/bin/ruff",
-  --     },
-  --   },
-  -- },
+  pylsp = {
+    cmd = "pylsp",
+    filetypes = "python",
+    plugins = {
+      --     -- formatter
+      --     black = { enabled = false },
+      ruff = {
+        enabled = true,
+        executable = "/usr/bin/ruff",
+        extendSelect = { "I" },
+      },
+    },
+  },
   rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
@@ -758,6 +770,10 @@ harpoon:setup({})
 -- REQUIRED
 
 vim.keymap.set("n", "<leader>H", function() harpoon:list():append() end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+vim.keymap.set("n", "<M-j>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<M-k>", function() harpoon:list():next() end)
 
 -- Use VIM plugins installed in Gentoo
 vim.opt.rtp:append('/usr/share/vim/vimfiles')
