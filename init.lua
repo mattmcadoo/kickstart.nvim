@@ -607,19 +607,19 @@ require('which-key').register({
   ['<leader>h'] = { 'Git [H]unk' },
 }, { mode = 'v' })
 
--- require 'lspconfig'.pylsp.setup {
---   settings = {
---     pylsp = {
---       plugins = {
---         ruff = {
---           enabled = true,
---           executable = "/usr/bin/ruff",
---           extendSelect = { "I" },
---         }
---       }
---     }
---   }
--- }
+require 'lspconfig'.pylsp.setup {
+  settings = {
+    pylsp = {
+      plugins = {
+        ruff = {
+          enabled = true,
+          executable = "/usr/bin/ruff",
+          extendSelect = { "I" },
+        }
+      }
+    }
+  }
+}
 
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
@@ -646,19 +646,19 @@ local servers = {
     },
   },
   -- gopls = {},
-  pylsp = {
-    cmd = "pylsp",
-    filetypes = "python",
-    plugins = {
-      --     -- formatter
-      --     black = { enabled = false },
-      ruff = {
-        enabled = true,
-        executable = "/usr/bin/ruff",
-        extendSelect = { "I" },
-      },
-    },
-  },
+  -- pylsp = {
+  --   cmd = "pylsp",
+  --   filetypes = { "py", "python" },
+  --   plugins = {
+  --     --     -- formatter
+  --     --     black = { enabled = false },
+  --     ruff = {
+  --       enabled = true,
+  --       executable = "/usr/bin/ruff",
+  --       extendSelect = { "I" },
+  --     },
+  --   },
+  -- },
   rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
