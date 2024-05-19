@@ -305,7 +305,7 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 vim.treesitter.language.add('bash', { path = "/usr/lib64/libtree-sitter-bash.so" })
-vim.treesitter.language.add('c_sharp', { path = "/usr/lib64/libtree-sitter-c-sharp.so" })
+vim.treesitter.language.add('c_sharp', { path = "/usr/lib64/libtree-sitter-c_sharp.so" })
 vim.treesitter.language.add('c', { path = "/usr/lib64/libtree-sitter-c.so" })
 vim.treesitter.language.add('cmake', { path = "/usr/lib64/libtree-sitter-cmake.so" })
 vim.treesitter.language.add('cpp', { path = "/usr/lib64/libtree-sitter-cpp.so" })
